@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+<h1>All our books by @Model[0].GetAuthor()!</h1>
+<hr>
+
+@foreach(var book in Model)
+{
+    <li> <a href="/books/@book.GetId()">@book.GetName()</a></li>
+}
+
+<p><a href="/books/new">Add a new book</a></p>
+<p><a href="/books/search">Search for a book by author</a></p>
+</div>

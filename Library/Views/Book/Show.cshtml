@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+<h2>Details of @Model["book"].GetName()</h2>
+
+<ul>
+<li>Author: @Model["book"].GetAuthor()</li>
+<li>Number of Copies Available: @Model["book"].GetCopies()</li>
+<li>Book ID: @Model["book"].GetId()</li>
+</ul>
+
+<hr>
+
+
+
+@if(Model["patrons"].Count != 0)
+{
+  <h1>this book is currently checked out to: </h1>
+    
+    @foreach(var patron in Model["patrons"])
+  {
+    <li>@patron.GetName()</li>
+  }
+}
+
+else
+{
+  <h2>This book is currently not checked out by anybody.</h2>
+}
+
+<p>Check this book out to a patron</p>
+
+<form action="/books/@Model["book"].GetId()" method="post">
+    <select name="patronId" >
+            @foreach(var patron in @Model["allPatrons"])
+            {
+                <option class="dropdown-item" value=@patron.GetId()>@patron.GetName()</option>
+            }
+    </select>
+     <button class="btn btn-primary btn-md" type="submit">Add</button>
+</form>

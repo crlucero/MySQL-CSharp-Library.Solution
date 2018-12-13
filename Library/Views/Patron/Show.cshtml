@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@if(Model["books"].Count != 0)
+{ 
+<h2>List of books currently checked out by @Model["patron"].GetName()</h2>
+    @foreach(var book in Model["books"])
+    {
+        <li>@book.GetName()</li>
+    }
+}
+else 
+{
+    <h2>This muthafucka does not read</h2> 
+}
+
+
